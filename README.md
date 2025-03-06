@@ -2,6 +2,8 @@
 
 **Tech Stack:** Next.js, React, TypeScript, Axios
 
+Live Preview: https://react-next-test-1-live.vercel.app/
+
 ## Features
 
 - **Fruit Select Todo List**: Select a fruit, and it returns to the list after 5 seconds.
