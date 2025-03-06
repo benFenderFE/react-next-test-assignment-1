@@ -93,6 +93,15 @@ const FruitsSelectListTest = () => {
     });
   };
 
+  const handleReturnToMainList = (item: Item) => {
+    setCategorizedItems((prev) => {
+      const filteredList = prev[item.type]?.filter((i) => i.name !== item.name) || [];
+      return { ...prev, [item.type]: filteredList };
+    });
+
+    setItems((prev) => [...prev, item]); // เพิ่มกลับเข้าไปใน Main List ทันที
+  };
+
   return (
     <Container>
       {/* Main List */}
@@ -110,7 +119,9 @@ const FruitsSelectListTest = () => {
         <Section key={type}>
           <Title>{type}</Title>
           {list.map((item) => (
-            <CategorizedItemBox key={item.name}>{item.name}</CategorizedItemBox>
+            <CategorizedItemBox key={item.name} onClick={() => handleReturnToMainList(item)}>
+              {item.name}
+            </CategorizedItemBox>
           ))}
         </Section>
       ))}
