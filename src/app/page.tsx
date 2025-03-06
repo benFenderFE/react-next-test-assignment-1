@@ -3,18 +3,6 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function Home() {
-  return (
-    <Container>
-      <Title>Select a Page</Title>
-      <Nav>
-        <MenuLink href="/fruits-select">🍎 Fruits Select List</MenuLink>
-        <MenuLink href="/api-rearrange">🔄 API Call Rearrange</MenuLink>
-      </Nav>
-    </Container>
-  );
-}
-
 // Styled Components
 const Container = styled.main`
   display: flex;
@@ -51,3 +39,15 @@ const MenuLink = styled(Link)`
     background-color: #005ecb;
   }
 `;
+
+export default function Home() {
+  return (
+    <Container>
+      <Title>Select a Page</Title>
+      <Nav>
+        <MenuLink href="/fruits-select">🍎 Fruits Select List</MenuLink>
+        <MenuLink href="/api-rearrange">🔄 API Call Rearrange</MenuLink>
+      </Nav>
+    </Container>
+  );
+}
