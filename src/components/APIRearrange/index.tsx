@@ -26,6 +26,7 @@ interface GroupedUsers {
 
 const Container = styled.div`
   display: flex;
+  justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
   padding: 20px;
@@ -35,7 +36,7 @@ const Card = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
-  width: 300px;
+  width: 200px;
   background-color: #f9f9f9;
 `;
 
