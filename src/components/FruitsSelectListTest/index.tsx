@@ -72,34 +72,40 @@ const FruitsSelectListTest = () => {
 
   const handleMove = (item: Item) => {
     setItems((prev) => prev.filter((i) => i.name !== item.name));
-    setCategorizedItems((prev) => {
-      const newCategory = {
-        ...prev,
-        [item.type]: [...(prev[item.type] || []), item],
-      };
+    setCategorizedItems((prev) => ({
+      ...prev,
+      [item.type]: [...(prev[item.type] || []), item],
+    }));
 
-      setTimeout(() => {
-        setCategorizedItems((prev) => {
-          const filteredList = prev[item.type]?.filter((i) => i.name !== item.name) || [];
-          return { ...prev, [item.type]: filteredList };
-        });
+    setTimeout(() => {
+      setCategorizedItems((prev) => {
+        const filteredList = prev[item.type]?.filter((i) => i.name !== item.name) || [];
+        const updatedCategories = { ...prev, [item.type]: filteredList };
 
-        setItems((prev) => (prev.some((i) => i.name === item.name) ? prev : [...prev, item]));
+        if (filteredList.length === 0) {
+          delete updatedCategories[item.type];
+        }
 
-        setCategorizedItems({});
-      }, 5000);
+        return updatedCategories;
+      });
 
-      return newCategory;
-    });
+      setItems((prev) => (prev.some((i) => i.name === item.name) ? prev : [...prev, item]));
+    }, 5000);
   };
 
   const handleReturnToMainList = (item: Item) => {
     setCategorizedItems((prev) => {
       const filteredList = prev[item.type]?.filter((i) => i.name !== item.name) || [];
-      return { ...prev, [item.type]: filteredList };
+      const updatedCategories = { ...prev, [item.type]: filteredList };
+
+      if (filteredList.length === 0) {
+        delete updatedCategories[item.type];
+      }
+
+      return updatedCategories;
     });
 
-    setItems((prev) => [...prev, item]); // เพิ่มกลับเข้าไปใน Main List ทันที
+    setItems((prev) => [...prev, item]);
   };
 
   return (
